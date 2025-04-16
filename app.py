@@ -5,18 +5,18 @@ app = Flask(__name__)
 
 @app.route('/api/v1.0/predict', methods=['GET'])
 def predict():
-    # Попытка получить числа из запроса
+
     try:
-        number1 = float(request.args.get('number1', 0))  # Если число не указано, по умолчанию будет 0
-        number2 = float(request.args.get('number2', 0))  # То же для второго числа
+        number1 = float(request.args.get('number1', 0))  
+        number2 = float(request.args.get('number2', 0))  
     except ValueError:
         return jsonify({"error": "Invalid input. Please provide valid numbers."}), 400
 
-    # Применение правила принятия решения
+    
     sum_of_numbers = number1 + number2
     prediction = 1 if sum_of_numbers > 5.8 else 0
 
-    # Ответ в формате JSON
+    
     response = {
         "prediction": prediction,
         "features": {
